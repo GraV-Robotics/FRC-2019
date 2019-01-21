@@ -20,4 +20,6 @@ public class RobotMap {
  public static int rightmotor2 = 3;
  public static int drivercontroller = 0;
  public static int manipulatorcontroller = 1;
+ public static int elevatortalon = 4;
+ public static int encoder = 0;
 }
