@@ -1,5 +1,7 @@
 package frc.robot.commands;
 
+import com.ctre.phoenix.motorcontrol.NeutralMode;
+
 import edu.wpi.first.wpilibj.command.Command;
 import frc.robot.Robot;
 
@@ -8,32 +10,29 @@ public class DriveWithController extends Command {
     requires(Robot.driveTrain);
   }
 
-  // Called just before this Command runs the first time
   @Override
   protected void initialize() {
+    Robot.driveTrain.driveBreaks(NeutralMode.Brake);
   }
 
-  // Called repeatedly when this Command is scheduled to run
   @Override
   protected void execute() {
-    Robot.driveTrain.arcadeDrive(Robot.m_oi.drivercontroller.getRawAxis(1), Robot.m_oi.drivercontroller.getRawAxis(4));
+    Robot.driveTrain.arcadeDrive(Robot.oi.driverController.getRawAxis(1), Robot.oi.driverController.getRawAxis(4), 0.75, 0.75);
 
   }
 
-  // Make this return true when this Command no longer needs to run execute()
   @Override
   protected boolean isFinished() {
     return false;
   }
 
-  // Called once after isFinished returns true
   @Override
   protected void end() {
+    Robot.driveTrain.stopDrive();
   }
 
-  // Called when another command which requires one or more of the same
-  // subsystems is scheduled to run
   @Override
   protected void interrupted() {
+    Robot.driveTrain.stopDrive();
   }
 }

@@ -1,25 +1,19 @@
-/*----------------------------------------------------------------------------*/
-/* Copyright (c) 2017-2018 FIRST. All Rights Reserved.                        */
-/* Open Source Software - may be modified and shared by FRC teams. The code   */
-/* must be accompanied by the FIRST BSD license file in the root directory of */
-/* the project.                                                               */
-/*----------------------------------------------------------------------------*/
-
 package frc.robot;
 
-/**
- * The RobotMap is a mapping from the ports sensors and actuators are wired into
- * to a variable name. This provides flexibility changing wiring, makes checking
- * the wiring easier and significantly reduces the number of magic numbers
- * floating around.
- */
 public class RobotMap {
- public static int leftmotor1 = 0;
- public static int leftmotor2 = 1;
- public static int rightmotor1 = 2;
- public static int rightmotor2 = 3;
- public static int drivercontroller = 0;
- public static int manipulatorcontroller = 1;
- public static int elevatortalon = 1;
- public static int encoder = 0;
+ public static final int leftDrive1 = 0;
+ public static final int leftDrive2 = 1;
+ public static final int rightDrive1 = 2;
+ public static final int rightDrive2 = 3;
+ public static final int driverController = 0;
+ public static final int manipulatorController = 1;
+ public static final int elevatorMotor = 1;
+ public static final int kSlotIdx = 0;
+ public static final int kPIDLoopIdx = 0;
+ public static final int kTimeoutMs = 30;
+ public static final double kP = 0.2;
+ public static final double kI = 0.0;
+ public static final double kD = 0.2;
+ public static final int kIzone = 0;
+ public static final double kPeakOutput = 1.0;
 }
