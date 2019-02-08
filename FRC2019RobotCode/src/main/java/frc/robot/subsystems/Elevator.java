@@ -7,6 +7,7 @@ import com.ctre.phoenix.motorcontrol.can.TalonSRX;
 
 import edu.wpi.first.wpilibj.command.Subsystem;
 import frc.robot.RobotMap;
+import frc.robot.commands.ElevatorEncoderOutput;
 
 public class Elevator extends Subsystem {
 
@@ -16,7 +17,7 @@ public class Elevator extends Subsystem {
     elevatorTalon = new TalonSRX(RobotMap.elevatorMotor);
     elevatorTalon.configFactoryDefault();
     elevatorTalon.configSelectedFeedbackSensor(FeedbackDevice.CTRE_MagEncoder_Relative, RobotMap.kPIDLoopIdx, RobotMap.kTimeoutMs);
-    elevatorTalon.setSensorPhase(true);
+    elevatorTalon.setSensorPhase(false);
     elevatorTalon.setInverted(false);
     elevatorTalon.setStatusFramePeriod(StatusFrameEnhanced.Status_13_Base_PIDF0, RobotMap.kTimeoutMs);
     elevatorTalon.setStatusFramePeriod(StatusFrameEnhanced.Status_10_MotionMagic, RobotMap.kTimeoutMs);
@@ -34,9 +35,16 @@ public class Elevator extends Subsystem {
     elevatorTalon.setSelectedSensorPosition(0, RobotMap.kPIDLoopIdx, RobotMap.kTimeoutMs);
   }
 
+  public double getEncoderValue(){
+    return elevatorTalon.getSelectedSensorPosition();
+  }
+
+  public void resetEncoder() {
+    elevatorTalon.setSelectedSensorPosition(0);
+  }
+
   public void driveToPosition(int encoderCount) {
-    double targetPos = encoderCount;
-    elevatorTalon.set(ControlMode.MotionMagic, targetPos);
+    elevatorTalon.set(ControlMode.MotionMagic, encoderCount);
   }
 
   public boolean setpointReached() {
@@ -45,7 +53,7 @@ public class Elevator extends Subsystem {
 
   @Override
   public void initDefaultCommand() {
-    
+    setDefaultCommand(new ElevatorEncoderOutput());    
   }
 
 }

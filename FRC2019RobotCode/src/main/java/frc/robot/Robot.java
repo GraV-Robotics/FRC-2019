@@ -13,8 +13,8 @@ public class Robot extends TimedRobot {
 
   @Override
   public void robotInit() {
-    oi = new OI();
     elevator = new Elevator();
+    oi = new OI();
     driveTrain = new DriveTrain();
   }
 
@@ -43,7 +43,7 @@ public class Robot extends TimedRobot {
 
   @Override
   public void teleopInit() {
-
+    elevator.resetEncoder();
   }
 
   @Override

@@ -2,9 +2,9 @@ package frc.robot;
 
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.buttons.JoystickButton;
-import frc.robot.commands.DriveElevatorHome;
 import frc.robot.commands.DriveElevatorPositionOne;
 import frc.robot.commands.DriveElevatorPositionTwo;
+import frc.robot.commands.DriveElevatorHome;
 
 public class OI {
 

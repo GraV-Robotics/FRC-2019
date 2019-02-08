@@ -14,7 +14,7 @@ public class DriveElevatorHome extends Command {
 
   @Override
   protected void execute() {
-    Robot.elevator.driveToPosition(0);
+    Robot.elevator.driveToPosition(10000);
   }
 
   @Override
