@@ -19,7 +19,7 @@ public class DriveElevatorPositionOne extends Command {
 
   @Override
   protected boolean isFinished() {
-    return Robot.elevator.setpointReached();
+    return Robot.elevator.getMotionProfileStatus();
   }
 
   @Override

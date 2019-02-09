@@ -8,7 +8,6 @@ import com.ctre.phoenix.motorcontrol.can.TalonSRX;
 import edu.wpi.first.wpilibj.DigitalInput;
 import edu.wpi.first.wpilibj.command.Subsystem;
 import frc.robot.RobotMap;
-import frc.robot.commands.SmartDashboardOutput;
 
 public class Elevator extends Subsystem {
 
@@ -46,6 +45,10 @@ public class Elevator extends Subsystem {
     return elevatorTalon.isMotionProfileFinished();
   }
 
+  public void driveElevator(double percent){
+    elevatorTalon.set(ControlMode.PercentOutput, percent);
+  }
+
   public double getEncoderValue(){
     return elevatorTalon.getSelectedSensorPosition();
   }
@@ -62,13 +65,9 @@ public class Elevator extends Subsystem {
     elevatorTalon.set(ControlMode.MotionMagic, encoderCount);
   }
 
-  public boolean setpointReached() {
-    return elevatorTalon.isMotionProfileFinished();
-  }
-
   @Override
   public void initDefaultCommand() {
-    setDefaultCommand(new SmartDashboardOutput());    
+    // setDefaultCommand(new SmartDashboardOutput());    
   }
 
 }

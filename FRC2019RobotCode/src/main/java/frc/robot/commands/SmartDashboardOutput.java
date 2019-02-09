@@ -6,7 +6,7 @@ import frc.robot.Robot;
 
 public class SmartDashboardOutput extends Command {
   public SmartDashboardOutput() {
-    requires(Robot.elevator);
+
   }
 
   // Called just before this Command runs the first time
@@ -19,6 +19,7 @@ public class SmartDashboardOutput extends Command {
   protected void execute() {
     elevatorOutput();
     hatchOutput();
+    driveTrainOutput();
   }
 
   public void elevatorOutput() {

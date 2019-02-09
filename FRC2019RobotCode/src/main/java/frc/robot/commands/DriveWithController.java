@@ -18,7 +18,6 @@ public class DriveWithController extends Command {
   @Override
   protected void execute() {
     Robot.driveTrain.arcadeDrive(Robot.oi.driverController.getRawAxis(1), Robot.oi.driverController.getRawAxis(4), 0.75, 0.75);
-
   }
 
   @Override
