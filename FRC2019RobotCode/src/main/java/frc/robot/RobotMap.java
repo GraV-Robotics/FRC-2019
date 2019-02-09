@@ -19,4 +19,8 @@ public class RobotMap {
  public static final double kPeakOutput = 1.0;
  public static final int hatchPop = 0;
  public static final int hatchPush = 1;
+ public static final int elevatorSwitch = 0;
+ public static final int hatchSwitch = 1;
+ public static final int leftUltrasonic = 0;
+ public static final int rightUltrasonic = 1;
 }

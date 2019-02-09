@@ -4,8 +4,8 @@ import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import frc.robot.Robot;
 
-public class ElevatorEncoderOutput extends Command {
-  public ElevatorEncoderOutput() {
+public class SmartDashboardOutput extends Command {
+  public SmartDashboardOutput() {
     requires(Robot.elevator);
   }
 
@@ -17,7 +17,25 @@ public class ElevatorEncoderOutput extends Command {
   // Called repeatedly when this Command is scheduled to run
   @Override
   protected void execute() {
+    elevatorOutput();
+    hatchOutput();
+  }
+
+  public void elevatorOutput() {
+    SmartDashboard.putNumber("Current Draw", Robot.elevator.getCurrentDraw());
     SmartDashboard.putNumber("Encoder Value", Robot.elevator.getEncoderValue());
+    SmartDashboard.putBoolean("Elevator Limit", Robot.elevator.getlimitSwitchState());
+    SmartDashboard.putBoolean("Motion Status", Robot.elevator.getMotionProfileStatus());
+  }
+
+  public void hatchOutput() {
+    SmartDashboard.putBoolean("Hatch Push", Robot.hatch.getHatchPushSolenoidState());
+    SmartDashboard.putBoolean("Hatch Pop", Robot.hatch.getHatchPopSolenoidState());
+  }
+
+  public void driveTrainOutput() {
+    SmartDashboard.putNumber("Left Voltage", Robot.driveTrain.getLeftVoltage());
+    SmartDashboard.putNumber("Right Voltage", Robot.driveTrain.getRightVoltage());
   }
 
   // Make this return true when this Command no longer needs to run execute()

@@ -5,13 +5,15 @@ import com.ctre.phoenix.motorcontrol.FeedbackDevice;
 import com.ctre.phoenix.motorcontrol.StatusFrameEnhanced;
 import com.ctre.phoenix.motorcontrol.can.TalonSRX;
 
+import edu.wpi.first.wpilibj.DigitalInput;
 import edu.wpi.first.wpilibj.command.Subsystem;
 import frc.robot.RobotMap;
-import frc.robot.commands.ElevatorEncoderOutput;
+import frc.robot.commands.SmartDashboardOutput;
 
 public class Elevator extends Subsystem {
 
   private TalonSRX elevatorTalon;
+  private DigitalInput limitSwitch;
 
   public Elevator(){
     elevatorTalon = new TalonSRX(RobotMap.elevatorMotor);
@@ -33,10 +35,23 @@ public class Elevator extends Subsystem {
     elevatorTalon.configMotionCruiseVelocity(25000, RobotMap.kTimeoutMs);
     elevatorTalon.configMotionAcceleration(10000, RobotMap.kTimeoutMs);
     elevatorTalon.setSelectedSensorPosition(0, RobotMap.kPIDLoopIdx, RobotMap.kTimeoutMs);
+    limitSwitch = new DigitalInput(RobotMap.elevatorSwitch);
+  }
+
+  public double getCurrentDraw(){
+    return elevatorTalon.getOutputCurrent();
+  }
+
+  public Boolean getMotionProfileStatus(){
+    return elevatorTalon.isMotionProfileFinished();
   }
 
   public double getEncoderValue(){
     return elevatorTalon.getSelectedSensorPosition();
+  }
+
+  public Boolean getlimitSwitchState() { 
+    return limitSwitch.get();
   }
 
   public void resetEncoder() {
@@ -53,7 +68,7 @@ public class Elevator extends Subsystem {
 
   @Override
   public void initDefaultCommand() {
-    setDefaultCommand(new ElevatorEncoderOutput());    
+    setDefaultCommand(new SmartDashboardOutput());    
   }
 
 }

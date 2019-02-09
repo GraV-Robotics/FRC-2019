@@ -4,6 +4,8 @@ package frc.robot.subsystems;
 import com.ctre.phoenix.motorcontrol.ControlMode;
 import com.ctre.phoenix.motorcontrol.NeutralMode;
 import com.ctre.phoenix.motorcontrol.can.VictorSPX;
+
+import edu.wpi.first.wpilibj.AnalogInput;
 import edu.wpi.first.wpilibj.command.Subsystem;
 import frc.robot.RobotMap;
 import frc.robot.commands.DriveWithController;
@@ -14,12 +16,16 @@ public class DriveTrain extends Subsystem {
   private VictorSPX leftMotor2;
   private VictorSPX rightMotor1;
   private VictorSPX rightMotor2;
+  private AnalogInput leftUltrasonic;
+  private AnalogInput rightUltrasonic;
 
   public DriveTrain(){
     leftMotor1 = new VictorSPX(RobotMap.leftDrive1);
     leftMotor2 = new VictorSPX(RobotMap.leftDrive2);
     rightMotor1 = new VictorSPX(RobotMap.rightDrive1);
     rightMotor2 = new VictorSPX(RobotMap.rightDrive2);
+    leftUltrasonic = new AnalogInput(RobotMap.leftUltrasonic);
+    rightUltrasonic = new AnalogInput(RobotMap.rightUltrasonic);
   }
 
   public void tankDrive(double left, double right, double speedModifier) {
@@ -48,6 +54,14 @@ public class DriveTrain extends Subsystem {
     leftMotor2.setNeutralMode(mode);
     rightMotor1.setNeutralMode(mode);
     rightMotor2.setNeutralMode(mode);
+  }
+
+  public double getLeftVoltage(){
+    return leftUltrasonic.getVoltage();
+  }
+
+  public double getRightVoltage(){
+    return rightUltrasonic.getVoltage();
   }
 
   @Override
