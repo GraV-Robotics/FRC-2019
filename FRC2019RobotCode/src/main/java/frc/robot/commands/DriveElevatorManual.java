@@ -1,9 +1,11 @@
 package frc.robot.commands;
 
 import edu.wpi.first.wpilibj.command.Command;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import frc.robot.Robot;
 
 public class DriveElevatorManual extends Command {
+  boolean drive;
   public DriveElevatorManual() {
     requires(Robot.elevator);
   }
@@ -16,6 +18,7 @@ public class DriveElevatorManual extends Command {
   // Called repeatedly when this Command is scheduled to run
   @Override
   protected void execute() {
+    drive = SmartDashboard.getBoolean("elevatorManual", false);
     Robot.elevator.driveElevator(-Robot.oi.manipulatorController.getRawAxis(1));
   }
 
