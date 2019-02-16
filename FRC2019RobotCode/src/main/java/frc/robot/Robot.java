@@ -4,6 +4,7 @@ import edu.wpi.cscore.UsbCamera;
 import edu.wpi.first.cameraserver.CameraServer;
 import edu.wpi.first.wpilibj.TimedRobot;
 import edu.wpi.first.wpilibj.command.Scheduler;
+import frc.robot.commands.ElevatorReset;
 import frc.robot.commands.SmartDashboardOutput;
 import frc.robot.subsystems.DriveTrain;
 import frc.robot.subsystems.Elevator;
@@ -16,6 +17,7 @@ public class Robot extends TimedRobot {
   public static OI oi;
   public static Hatch hatch;
   public static SmartDashboardOutput dashboardOutput;
+  public static ElevatorReset elevatorReset;
 
   @Override
   public void robotInit() {
@@ -31,11 +33,13 @@ public class Robot extends TimedRobot {
     camera2.setResolution(5, 1);
     camera2.setFPS(15);
     CameraServer.getInstance().addAxisCamera("10.58.16.13");
+    elevatorReset = new ElevatorReset();
   }
 
   @Override
   public void robotPeriodic() {
     dashboardOutput.start();
+    elevatorReset.start();
   }
 
   @Override
