@@ -20,7 +20,7 @@ public class Hatch extends Subsystem {
     compressor.start();
     hatchPop = new Solenoid(RobotMap.hatchPop);
     hatchPush = new Solenoid(RobotMap.hatchPush);
-    limitSwitch = new DigitalInput(RobotMap.hatchSwitch);
+    // limitSwitch = new DigitalInput(RobotMap.hatchSwitch);
   } 
 
   public Boolean getHatchPushSolenoidState(){

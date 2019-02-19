@@ -19,23 +19,19 @@ public class OI {
   public JoystickButton elevatorPos2 = new JoystickButton(manipulatorController, 3);
   public JoystickButton hatchPush = new JoystickButton(manipulatorController, 5);
   public JoystickButton hatchRetract = new JoystickButton(manipulatorController, 6);
-  HatchPop hatchPop = new HatchPop();
   boolean elevatorDrive;
+  public JoystickButton hatchPop = new JoystickButton(manipulatorController, 9);
 
   public OI() {
-    elevatorHome.whenPressed(new DriveElevatorHome());
-    elevatorPos1.whenPressed(new DriveElevatorPositionOne());
-    elevatorPos2.whenPressed(new DriveElevatorPositionTwo());
+    // elevatorHome.whenPressed(new DriveElevatorHome());
+    // elevatorPos1.whenPressed(new DriveElevatorPositionOne());
+    // elevatorPos2.whenPressed(new DriveElevatorPositionTwo());
+    hatchPop.whileHeld(new HatchPop());
     hatchPush.whenPressed(new HatchPush());
     hatchRetract.whenPressed(new HatchRetract());
-    elevatorDrive = SmartDashboard.getBoolean("elevatorDrive", false);
-    if (manipulatorController.getRawAxis(2) != 0) {
-      hatchPop.start();
-    }
-    if (elevatorDrive){
-      Robot.driveElevatorManual.start();
-    } else {
-      Robot.driveElevatorManual.cancel();
-    }
+    // elevatorDrive = SmartDashboard.getBoolean("elevatorDrive", false);
+    // if (elevatorDrive){
+    //   Robot.driveElevatorManual.start();
+    // } 
   }
 }

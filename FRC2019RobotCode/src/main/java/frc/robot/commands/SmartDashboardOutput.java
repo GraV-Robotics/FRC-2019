@@ -18,8 +18,8 @@ public class SmartDashboardOutput extends Command {
   @Override
   protected void execute() {
     elevatorOutput();
-    hatchOutput();
-    driveTrainOutput();
+    // hatchOutput();
+    // driveTrainOutput();
   }
 
   public void elevatorOutput() {
@@ -34,10 +34,10 @@ public class SmartDashboardOutput extends Command {
     SmartDashboard.putBoolean("Hatch Pop", Robot.hatch.getHatchPopSolenoidState());
   }
 
-  public void driveTrainOutput() {
-    SmartDashboard.putNumber("Left Voltage", Robot.driveTrain.getLeftVoltage());
-    SmartDashboard.putNumber("Right Voltage", Robot.driveTrain.getRightVoltage());
-  }
+  // public void driveTrainOutput() {
+  //   SmartDashboard.putNumber("Left Voltage", Robot.driveTrain.getLeftVoltage());
+  //   SmartDashboard.putNumber("Right Voltage", Robot.driveTrain.getRightVoltage());
+  // }
 
   // Make this return true when this Command no longer needs to run execute()
   @Override

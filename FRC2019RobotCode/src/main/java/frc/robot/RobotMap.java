@@ -1,13 +1,13 @@
 package frc.robot;
 
 public class RobotMap {
- public static final int leftDrive1 = 0;
- public static final int leftDrive2 = 1;
- public static final int rightDrive1 = 2;
- public static final int rightDrive2 = 3;
+ public static final int leftDrive1 = 1;
+ public static final int leftDrive2 = 4;
+ public static final int rightDrive1 = 5;
+ public static final int rightDrive2 = 6;
  public static final int driverController = 0;
  public static final int manipulatorController = 1;
- public static final int elevatorMotor = 4;
+ public static final int elevatorMotor = 0;
  public static final int kSlotIdx = 0;
  public static final int kPIDLoopIdx = 0;
  public static final int kTimeoutMs = 30;
@@ -17,8 +17,8 @@ public class RobotMap {
  public static final double kD = 0.0;
  public static final int kIzone = 0;
  public static final double kPeakOutput = 1.0;
- public static final int hatchPop = 0;
- public static final int hatchPush = 1;
+ public static final int hatchPop = 1;
+ public static final int hatchPush = 0;
  public static final int elevatorSwitch = 0;
  public static final int hatchSwitch = 1;
  public static final int leftUltrasonic = 0;

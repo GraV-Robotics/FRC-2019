@@ -1,26 +1,36 @@
 package frc.robot.commands;
 
-import edu.wpi.first.wpilibj.Timer;
-import edu.wpi.first.wpilibj.command.InstantCommand;
+import edu.wpi.first.wpilibj.command.Command;
 import frc.robot.Robot;
 
 /**
  * Add your docs here.
  */
-public class HatchPop extends InstantCommand {
+public class HatchPop extends Command {
   /**
    * Add your docs here.
    */
   public HatchPop() {
-    super();
     requires(Robot.hatch);
   }
 
   // Called once when the command executes
   @Override
   protected void initialize() {
+  }
+
+  @Override
+  protected void execute() {
     Robot.hatch.setHatchPop(true);
-    Timer.delay(.1);
+  }
+
+  @Override
+  protected boolean isFinished() {
+    return isCompleted();
+  }
+
+  @Override
+  protected void end() {
     Robot.hatch.setHatchPop(false);
   }
 

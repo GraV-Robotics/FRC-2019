@@ -2,6 +2,7 @@ package frc.robot.subsystems;
 
 import com.ctre.phoenix.motorcontrol.ControlMode;
 import com.ctre.phoenix.motorcontrol.FeedbackDevice;
+import com.ctre.phoenix.motorcontrol.NeutralMode;
 import com.ctre.phoenix.motorcontrol.StatusFrameEnhanced;
 import com.ctre.phoenix.motorcontrol.can.TalonSRX;
 
@@ -20,6 +21,7 @@ public class Elevator extends Subsystem {
     elevatorTalon.configSelectedFeedbackSensor(FeedbackDevice.CTRE_MagEncoder_Relative, RobotMap.kPIDLoopIdx, RobotMap.kTimeoutMs);
     elevatorTalon.setSensorPhase(false);
     elevatorTalon.setInverted(false);
+    elevatorTalon.setNeutralMode(NeutralMode.Brake);
     elevatorTalon.setStatusFramePeriod(StatusFrameEnhanced.Status_13_Base_PIDF0, RobotMap.kTimeoutMs);
     elevatorTalon.setStatusFramePeriod(StatusFrameEnhanced.Status_10_MotionMagic, RobotMap.kTimeoutMs);
     elevatorTalon.configNominalOutputForward(0, RobotMap.kTimeoutMs);
@@ -67,7 +69,8 @@ public class Elevator extends Subsystem {
 
   @Override
   public void initDefaultCommand() {
-    // setDefaultCommand(new SmartDashboardOutput());    
+    // setDefaultCommand(new SmartDashboardOutput());   
+  // setDefaultCommand(new DriveElevatorManual());
   }
 
 }

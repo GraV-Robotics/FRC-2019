@@ -24,25 +24,25 @@ public class Robot extends TimedRobot {
   @Override
   public void robotInit() {
     elevator = new Elevator();
+    hatch = new Hatch();
     oi = new OI();
     driveTrain = new DriveTrain();
-    hatch = new Hatch();
-    dashboardOutput = new SmartDashboardOutput();
+    // dashboardOutput = new SmartDashboardOutput();
+    // UsbCamera camera1 = CameraServer.getInstance().startAutomaticCapture(0);
+    // camera1.setResolution(5, 1);
+    // camera1.setFPS(15);
+    // UsbCamera camera2 = CameraServer.getInstance().startAutomaticCapture(1);
+    // camera2.setResolution(5, 1);
+    // camera2.setFPS(15);
+    // CameraServer.getInstance().addAxisCamera("10.58.16.13");
+    // elevatorReset = new ElevatorReset();
     driveElevatorManual = new DriveElevatorManual();
-    UsbCamera camera1 = CameraServer.getInstance().startAutomaticCapture(0);
-    camera1.setResolution(5, 1);
-    camera1.setFPS(15);
-    UsbCamera camera2 = CameraServer.getInstance().startAutomaticCapture(1);
-    camera2.setResolution(5, 1);
-    camera2.setFPS(15);
-    CameraServer.getInstance().addAxisCamera("10.58.16.13");
-    elevatorReset = new ElevatorReset();
   }
 
   @Override
   public void robotPeriodic() {
-    dashboardOutput.start();
-    elevatorReset.start();
+    // dashboardOutput.start();
+    // elevatorReset.start();
   }
 
   @Override
@@ -66,7 +66,8 @@ public class Robot extends TimedRobot {
 
   @Override
   public void teleopInit() {
-    elevator.resetEncoder();
+    // elevator.resetEncoder();
+    driveElevatorManual.start();
   }
 
   @Override
