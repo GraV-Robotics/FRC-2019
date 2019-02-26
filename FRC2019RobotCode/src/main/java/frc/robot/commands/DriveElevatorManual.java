@@ -12,12 +12,13 @@ public class DriveElevatorManual extends Command {
   // Called just before this Command runs the first time
   @Override
   protected void initialize() {
+    Robot.elevator.setBrakeMode(true);
   }
 
   // Called repeatedly when this Command is scheduled to run
   @Override
   protected void execute() {
-    Robot.elevator.driveElevator(((-Robot.oi.manipulatorController.getRawAxis(2)) * 0.75) + ((Robot.oi.manipulatorController.getRawAxis(3)) * 0.75));
+    Robot.elevator.driveElevator(((-Robot.oi.manipulatorController.getRawAxis(2)) * 0.75) + ((Robot.oi.manipulatorController.getRawAxis(3)) * 1.0));
   }
 
   // Make this return true when this Command no longer needs to run execute()

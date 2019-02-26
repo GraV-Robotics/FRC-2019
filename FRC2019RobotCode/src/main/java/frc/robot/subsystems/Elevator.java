@@ -39,6 +39,14 @@ public class Elevator extends Subsystem {
     limitSwitch = new DigitalInput(RobotMap.elevatorSwitch);
   }
 
+  public void setBrakeMode(boolean state) {
+    if (state) {
+      elevatorTalon.setNeutralMode(NeutralMode.Brake);
+    } else {
+      elevatorTalon.setNeutralMode(NeutralMode.Coast);
+    }
+  }
+
   public double getCurrentDraw(){
     return elevatorTalon.getOutputCurrent();
   }
