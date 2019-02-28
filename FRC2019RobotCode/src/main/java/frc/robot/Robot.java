@@ -2,14 +2,16 @@ package frc.robot;
 
 import edu.wpi.cscore.UsbCamera;
 import edu.wpi.first.cameraserver.CameraServer;
+import edu.wpi.first.wpilibj.DriverStation;
 import edu.wpi.first.wpilibj.TimedRobot;
 import edu.wpi.first.wpilibj.command.Scheduler;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import frc.robot.commands.DriveElevatorManual;
-import frc.robot.commands.ElevatorReset;
 import frc.robot.commands.SmartDashboardOutput;
 import frc.robot.subsystems.DriveTrain;
 import frc.robot.subsystems.Elevator;
 import frc.robot.subsystems.Hatch;
+import frc.robot.subsystems.LevelTwoClimb;
 
 public class Robot extends TimedRobot {
 
@@ -17,8 +19,9 @@ public class Robot extends TimedRobot {
   public static DriveTrain driveTrain;
   public static OI oi;
   public static Hatch hatch;
-  public static SmartDashboardOutput dashboardOutput;
-  public static ElevatorReset elevatorReset;
+  // public static SmartDashboardOutput dashboardOutput;
+  public static LevelTwoClimb levelTwoClimb;
+  public static boolean manualElevatorControlState;
   public static DriveElevatorManual driveElevatorManual;
 
   @Override
@@ -27,22 +30,27 @@ public class Robot extends TimedRobot {
     hatch = new Hatch();
     oi = new OI();
     driveTrain = new DriveTrain();
+    driveElevatorManual = new DriveElevatorManual();
+    // levelTwoClimb = new LevelTwoClimb();
     // dashboardOutput = new SmartDashboardOutput();
     // UsbCamera camera1 = CameraServer.getInstance().startAutomaticCapture(0);
     // camera1.setResolution(5, 1);
     // camera1.setFPS(15);
-    // UsbCamera camera2 = CameraServer.getInstance().startAutomaticCapture(1);
-    // camera2.setResolution(5, 1);
-    // camera2.setFPS(15);
-    // CameraServer.getInstance().addAxisCamera("10.58.16.13");
-    // elevatorReset = new ElevatorReset();
-    driveElevatorManual = new DriveElevatorManual();
+    elevatorOutput();
+    hatchOutput();
+    driveTrainOutput();
+    matchData();
+    // levelTwoOutput();
   }
 
   @Override
   public void robotPeriodic() {
-    // dashboardOutput.start();
-    // elevatorReset.start();
+    manualElevatorDriveControl();
+    if (manualElevatorControlState) {
+      driveElevatorManual.start();
+    } else {
+      driveElevatorManual.cancel();
+    }
   }
 
   @Override
@@ -66,8 +74,6 @@ public class Robot extends TimedRobot {
 
   @Override
   public void teleopInit() {
-    // elevator.resetEncoder();
-    driveElevatorManual.start();
   }
 
   @Override
@@ -78,6 +84,34 @@ public class Robot extends TimedRobot {
   @Override
   public void testPeriodic() {
 
+  }
+
+  public void elevatorOutput() {
+    SmartDashboard.putNumber("Current Draw", Robot.elevator.getCurrentDraw());
+    SmartDashboard.putNumber("Encoder Value", Robot.elevator.getEncoderValue());
+    SmartDashboard.putBoolean("Motion Status", Robot.elevator.getMotionProfileStatus());
+  }
+
+  public void hatchOutput() {
+    SmartDashboard.putBoolean("Hatch Push", Robot.hatch.getHatchPushSolenoidState());
+    SmartDashboard.putBoolean("Hatch Pop", Robot.hatch.getHatchPopSolenoidState());
+  }
+
+  public void driveTrainOutput() {
+    SmartDashboard.putNumber("Gyro Angle", Robot.driveTrain.getGyroAngle());
+  }
+
+  public void levelTwoOutput() {
+    SmartDashboard.putBoolean("Tank Piston Solenoid", Robot.levelTwoClimb.getTankSolenoidState());
+    SmartDashboard.putBoolean("Piston Solenoid", Robot.levelTwoClimb.getPistonSolenoidState());
+  }
+
+  public void matchData() {
+    SmartDashboard.putNumber("Time Remaining", DriverStation.getInstance().getMatchTime());
+  }
+
+  public void manualElevatorDriveControl() {
+    manualElevatorControlState = SmartDashboard.getBoolean("Manual Elevator Control", false);
   }
 
 }

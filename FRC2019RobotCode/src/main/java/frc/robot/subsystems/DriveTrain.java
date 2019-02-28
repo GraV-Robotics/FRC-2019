@@ -5,7 +5,9 @@ import com.ctre.phoenix.motorcontrol.ControlMode;
 import com.ctre.phoenix.motorcontrol.NeutralMode;
 import com.ctre.phoenix.motorcontrol.can.TalonSRX;
 
+import edu.wpi.first.wpilibj.ADXRS450_Gyro;
 import edu.wpi.first.wpilibj.command.Subsystem;
+import edu.wpi.first.wpilibj.interfaces.Gyro;
 import frc.robot.RobotMap;
 import frc.robot.commands.DriveWithController;
 
@@ -15,16 +17,15 @@ public class DriveTrain extends Subsystem {
   private TalonSRX leftMotor2;
   private TalonSRX rightMotor1;
   private TalonSRX rightMotor2;
-  // private AnalogInput leftUltrasonic;
-  // private AnalogInput rightUltrasonic;
+  private Gyro gyro;
 
   public DriveTrain(){
     leftMotor1 = new TalonSRX(RobotMap.leftDrive1);
     leftMotor2 = new TalonSRX(RobotMap.leftDrive2);
     rightMotor1 = new TalonSRX(RobotMap.rightDrive1);
     rightMotor2 = new TalonSRX(RobotMap.rightDrive2);
-    // leftUltrasonic = new AnalogInput(RobotMap.leftUltrasonic);
-    // rightUltrasonic = new AnalogInput(RobotMap.rightUltrasonic);
+    gyro = new ADXRS450_Gyro();
+    gyro.calibrate();
   }
 
   public void tankDrive(double left, double right, double speedModifier) {
@@ -55,13 +56,17 @@ public class DriveTrain extends Subsystem {
     rightMotor2.setNeutralMode(mode);
   }
 
-  // public double getLeftVoltage(){
-  //   return leftUltrasonic.getVoltage();
-  // }
+  public void calibrateGyro() {
+    gyro.calibrate();
+  }
 
-  // public double getRightVoltage(){
-  //   return rightUltrasonic.getVoltage();
-  // }
+  public double getGyroRate() {
+    return gyro.getRate();
+  }
+
+  public double getGyroAngle() {
+    return gyro.getAngle();
+  }
 
   @Override
   public void initDefaultCommand() {

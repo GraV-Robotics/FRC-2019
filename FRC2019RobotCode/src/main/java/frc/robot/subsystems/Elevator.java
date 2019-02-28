@@ -5,15 +5,14 @@ import com.ctre.phoenix.motorcontrol.FeedbackDevice;
 import com.ctre.phoenix.motorcontrol.NeutralMode;
 import com.ctre.phoenix.motorcontrol.StatusFrameEnhanced;
 import com.ctre.phoenix.motorcontrol.can.TalonSRX;
-
-import edu.wpi.first.wpilibj.DigitalInput;
 import edu.wpi.first.wpilibj.command.Subsystem;
 import frc.robot.RobotMap;
+import frc.robot.commands.DriveElevatorHome;
 
 public class Elevator extends Subsystem {
 
   private TalonSRX elevatorTalon;
-  private DigitalInput limitSwitch;
+  private String previousElevatorPosition;
 
   public Elevator(){
     elevatorTalon = new TalonSRX(RobotMap.elevatorMotor);
@@ -21,7 +20,6 @@ public class Elevator extends Subsystem {
     elevatorTalon.configSelectedFeedbackSensor(FeedbackDevice.CTRE_MagEncoder_Relative, RobotMap.kPIDLoopIdx, RobotMap.kTimeoutMs);
     elevatorTalon.setSensorPhase(false);
     elevatorTalon.setInverted(false);
-    elevatorTalon.setNeutralMode(NeutralMode.Brake);
     elevatorTalon.setStatusFramePeriod(StatusFrameEnhanced.Status_13_Base_PIDF0, RobotMap.kTimeoutMs);
     elevatorTalon.setStatusFramePeriod(StatusFrameEnhanced.Status_10_MotionMagic, RobotMap.kTimeoutMs);
     elevatorTalon.configNominalOutputForward(0, RobotMap.kTimeoutMs);
@@ -36,7 +34,6 @@ public class Elevator extends Subsystem {
     elevatorTalon.configMotionCruiseVelocity(25000, RobotMap.kTimeoutMs);
     elevatorTalon.configMotionAcceleration(10000, RobotMap.kTimeoutMs);
     elevatorTalon.setSelectedSensorPosition(0, RobotMap.kPIDLoopIdx, RobotMap.kTimeoutMs);
-    limitSwitch = new DigitalInput(RobotMap.elevatorSwitch);
   }
 
   public void setBrakeMode(boolean state) {
@@ -47,8 +44,21 @@ public class Elevator extends Subsystem {
     }
   }
 
+  public void setPeakOutput(double value) {
+    elevatorTalon.configPeakOutputForward(value, RobotMap.kTimeoutMs);
+    elevatorTalon.configPeakOutputReverse(-value, RobotMap.kTimeoutMs);
+  }
+
+  public void setCurrentLimit(int limit) {
+    elevatorTalon.configContinuousCurrentLimit(limit);
+  }
+
   public double getCurrentDraw(){
     return elevatorTalon.getOutputCurrent();
+  }
+
+  public void enableCurrentLimit(boolean state) {
+    elevatorTalon.enableCurrentLimit(state);
   }
 
   public Boolean getMotionProfileStatus(){
@@ -63,10 +73,6 @@ public class Elevator extends Subsystem {
     return elevatorTalon.getSelectedSensorPosition();
   }
 
-  public Boolean getlimitSwitchState() { 
-    return limitSwitch.get();
-  }
-
   public void resetEncoder() {
     elevatorTalon.setSelectedSensorPosition(0);
   }
@@ -75,10 +81,17 @@ public class Elevator extends Subsystem {
     elevatorTalon.set(ControlMode.MotionMagic, encoderCount);
   }
 
+  public void setPreviousElevatorPosition(String string) {
+    previousElevatorPosition = string;
+  }
+
+  public String getPreviousElevatorPosition() {
+    return previousElevatorPosition;
+  }
+
   @Override
   public void initDefaultCommand() {
-    // setDefaultCommand(new SmartDashboardOutput());   
-  // setDefaultCommand(new DriveElevatorManual());
+    setDefaultCommand(new DriveElevatorHome());
   }
 
 }

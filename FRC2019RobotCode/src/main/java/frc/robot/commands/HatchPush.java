@@ -1,38 +1,38 @@
 package frc.robot.commands;
 
+import edu.wpi.first.wpilibj.DriverStation;
 import edu.wpi.first.wpilibj.command.Command;
 import frc.robot.Robot;
+import frc.robot.RobotMap;
 
 public class HatchPush extends Command {
   public HatchPush() {
     requires(Robot.hatch);
   }
-
-  // Called just before this Command runs the first time
   @Override
   protected void initialize() {
   }
 
-  // Called repeatedly when this Command is scheduled to run
   @Override
   protected void execute() {
     Robot.hatch.setHatchPush(true);
   }
-
-  // Make this return true when this Command no longer needs to run execute()
   @Override
   protected boolean isFinished() {
-    return Robot.hatch.getHatchPushSolenoidState();
+    return isCompleted();
   }
 
-  // Called once after isFinished returns true
   @Override
   protected void end() {
+    if (Robot.elevator.getPreviousElevatorPosition() == RobotMap.ELEVATOR_STATES[0]) {
+      Robot.hatch.setHatchPush(false);
+    } else {
+      interrupted();
+    }
   }
 
-  // Called when another command which requires one or more of the same
-  // subsystems is scheduled to run
   @Override
   protected void interrupted() {
+    DriverStation.getInstance().reportError("Tried to retract hatch mechanism while elevator was not at home position, or command was canceled.", true);
   }
 }

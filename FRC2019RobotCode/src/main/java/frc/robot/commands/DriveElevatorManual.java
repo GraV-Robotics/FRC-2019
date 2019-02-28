@@ -4,7 +4,6 @@ import edu.wpi.first.wpilibj.command.Command;
 import frc.robot.Robot;
 
 public class DriveElevatorManual extends Command {
-  boolean drive;
   public DriveElevatorManual() {
     requires(Robot.elevator);
   }
@@ -13,6 +12,8 @@ public class DriveElevatorManual extends Command {
   @Override
   protected void initialize() {
     Robot.elevator.setBrakeMode(true);
+    Robot.elevator.setCurrentLimit(25);
+    Robot.elevator.enableCurrentLimit(true);
   }
 
   // Called repeatedly when this Command is scheduled to run

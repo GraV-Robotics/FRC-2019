@@ -18,14 +18,13 @@ public class SmartDashboardOutput extends Command {
   @Override
   protected void execute() {
     elevatorOutput();
-    // hatchOutput();
-    // driveTrainOutput();
+    hatchOutput();
+    driveTrainOutput();
   }
 
   public void elevatorOutput() {
     SmartDashboard.putNumber("Current Draw", Robot.elevator.getCurrentDraw());
     SmartDashboard.putNumber("Encoder Value", Robot.elevator.getEncoderValue());
-    SmartDashboard.putBoolean("Elevator Limit", Robot.elevator.getlimitSwitchState());
     SmartDashboard.putBoolean("Motion Status", Robot.elevator.getMotionProfileStatus());
   }
 
@@ -34,10 +33,14 @@ public class SmartDashboardOutput extends Command {
     SmartDashboard.putBoolean("Hatch Pop", Robot.hatch.getHatchPopSolenoidState());
   }
 
-  // public void driveTrainOutput() {
-  //   SmartDashboard.putNumber("Left Voltage", Robot.driveTrain.getLeftVoltage());
-  //   SmartDashboard.putNumber("Right Voltage", Robot.driveTrain.getRightVoltage());
-  // }
+  public void driveTrainOutput() {
+    SmartDashboard.putNumber("Gyro Angle", Robot.driveTrain.getGyroAngle());
+  }
+
+  public void levelTwoOutput() {
+    SmartDashboard.putBoolean("Tank Piston Solenoid", Robot.levelTwoClimb.getTankSolenoidState());
+    SmartDashboard.putBoolean("Piston Solenoid", Robot.levelTwoClimb.getPistonSolenoidState());
+  }
 
   // Make this return true when this Command no longer needs to run execute()
   @Override
