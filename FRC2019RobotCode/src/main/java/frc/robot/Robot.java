@@ -46,6 +46,10 @@ public class Robot extends TimedRobot {
   @Override
   public void robotPeriodic() {
     manualElevatorDriveControl();
+    elevatorOutput();
+    hatchOutput();
+    driveTrainOutput();
+    matchData();
     if (manualElevatorControlState) {
       driveElevatorManual.start();
     } else {
