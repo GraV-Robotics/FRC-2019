@@ -37,11 +37,6 @@ public class SmartDashboardOutput extends Command {
     SmartDashboard.putNumber("Gyro Angle", Robot.driveTrain.getGyroAngle());
   }
 
-  public void levelTwoOutput() {
-    SmartDashboard.putBoolean("Tank Piston Solenoid", Robot.levelTwoClimb.getTankSolenoidState());
-    SmartDashboard.putBoolean("Piston Solenoid", Robot.levelTwoClimb.getPistonSolenoidState());
-  }
-
   // Make this return true when this Command no longer needs to run execute()
   @Override
   protected boolean isFinished() {

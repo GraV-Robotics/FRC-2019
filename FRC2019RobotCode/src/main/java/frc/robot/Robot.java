@@ -11,7 +11,7 @@ import frc.robot.commands.SmartDashboardOutput;
 import frc.robot.subsystems.DriveTrain;
 import frc.robot.subsystems.Elevator;
 import frc.robot.subsystems.Hatch;
-import frc.robot.subsystems.LevelTwoClimb;
+
 
 public class Robot extends TimedRobot {
 
@@ -19,8 +19,7 @@ public class Robot extends TimedRobot {
   public static DriveTrain driveTrain;
   public static OI oi;
   public static Hatch hatch;
-  // public static SmartDashboardOutput dashboardOutput;
-  public static LevelTwoClimb levelTwoClimb;
+ public static SmartDashboardOutput dashboardOutput;
   public static boolean manualElevatorControlState;
   public static DriveElevatorManual driveElevatorManual;
 
@@ -31,16 +30,14 @@ public class Robot extends TimedRobot {
     oi = new OI();
     driveTrain = new DriveTrain();
     driveElevatorManual = new DriveElevatorManual();
-    // levelTwoClimb = new LevelTwoClimb();
     // dashboardOutput = new SmartDashboardOutput();
-    // UsbCamera camera1 = CameraServer.getInstance().startAutomaticCapture(0);
-    // camera1.setResolution(5, 1);
-    // camera1.setFPS(15);
+    UsbCamera camera1 = CameraServer.getInstance().startAutomaticCapture(0);
+    camera1.setResolution(5, 1);
+    camera1.setFPS(15);
     elevatorOutput();
     hatchOutput();
     driveTrainOutput();
     matchData();
-    // levelTwoOutput();
   }
 
   @Override
@@ -50,11 +47,6 @@ public class Robot extends TimedRobot {
     hatchOutput();
     driveTrainOutput();
     matchData();
-    if (manualElevatorControlState) {
-      driveElevatorManual.start();
-    } else {
-      driveElevatorManual.cancel();
-    }
   }
 
   @Override
@@ -103,11 +95,6 @@ public class Robot extends TimedRobot {
 
   public void driveTrainOutput() {
     SmartDashboard.putNumber("Gyro Angle", Robot.driveTrain.getGyroAngle());
-  }
-
-  public void levelTwoOutput() {
-    SmartDashboard.putBoolean("Tank Piston Solenoid", Robot.levelTwoClimb.getTankSolenoidState());
-    SmartDashboard.putBoolean("Piston Solenoid", Robot.levelTwoClimb.getPistonSolenoidState());
   }
 
   public void matchData() {

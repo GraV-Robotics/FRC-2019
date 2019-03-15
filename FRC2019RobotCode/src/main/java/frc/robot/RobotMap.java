@@ -18,11 +18,9 @@ public class RobotMap {
  public static final int kIzone = 0;
  public static final double kPeakOutput = 1.0;
  public static final int elevatorHomePos = 0;
- public static final int elevatorPos1 = 50000;
- public static final int elevatorPos2 = 100000;
+ public static final int elevatorPos1 = 32000;
+ public static final int elevatorPos2 = 61000;
  public static final int hatchPush = 0;
  public static final int hatchPop = 1;
- public static final int levelTwoTank = 2;
- public static final int levelTwoPiston = 3;
  public static final String ELEVATOR_STATES[] = {"HOME", "POS1", "POS2"};
 }

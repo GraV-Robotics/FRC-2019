@@ -7,7 +7,7 @@ import frc.robot.RobotMap;
 public class DriveElevatorHome extends Command {
   public DriveElevatorHome() {
     requires(Robot.elevator);
-    requires(Robot.hatch);
+    // requires(Robot.hatch);
   }
 
   @Override
@@ -15,17 +15,16 @@ public class DriveElevatorHome extends Command {
     Robot.elevator.setPreviousElevatorPosition(RobotMap.ELEVATOR_STATES[0]);
     Robot.elevator.setBrakeMode(true);
     Robot.elevator.setCurrentLimit(10);
-    Robot.elevator.setPeakOutput(0.65);
+    Robot.elevator.setPeakOutput(1.0);
     Robot.elevator.enableCurrentLimit(true);
   }
 
   @Override
   protected void execute() {
-    if (isSafeToMove()) {
       Robot.elevator.driveToPosition(RobotMap.elevatorHomePos);
-    } else {
-      Robot.hatch.setHatchPush(true);
-    }
+      if (Robot.elevator.getEncoderValue() < 3000 || Robot.elevator.getEncoderValue() > -500) {
+      Robot.hatch.SetInteruptHatch(false);
+      }
   }
 
   @Override

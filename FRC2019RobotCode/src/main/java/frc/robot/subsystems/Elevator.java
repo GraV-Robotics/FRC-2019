@@ -18,7 +18,7 @@ public class Elevator extends Subsystem {
     elevatorTalon = new TalonSRX(RobotMap.elevatorMotor);
     elevatorTalon.configFactoryDefault();
     elevatorTalon.configSelectedFeedbackSensor(FeedbackDevice.CTRE_MagEncoder_Relative, RobotMap.kPIDLoopIdx, RobotMap.kTimeoutMs);
-    elevatorTalon.setSensorPhase(false);
+    elevatorTalon.setSensorPhase(true);
     elevatorTalon.setInverted(false);
     elevatorTalon.setStatusFramePeriod(StatusFrameEnhanced.Status_13_Base_PIDF0, RobotMap.kTimeoutMs);
     elevatorTalon.setStatusFramePeriod(StatusFrameEnhanced.Status_10_MotionMagic, RobotMap.kTimeoutMs);
@@ -31,8 +31,8 @@ public class Elevator extends Subsystem {
     elevatorTalon.config_kI(RobotMap.kSlotIdx, RobotMap.kI, RobotMap.kTimeoutMs);
     elevatorTalon.config_kD(RobotMap.kSlotIdx, RobotMap.kD, RobotMap.kTimeoutMs);
     elevatorTalon.config_kF(RobotMap.kSlotIdx, RobotMap.kF, RobotMap.kTimeoutMs);
-    elevatorTalon.configMotionCruiseVelocity(25000, RobotMap.kTimeoutMs);
-    elevatorTalon.configMotionAcceleration(10000, RobotMap.kTimeoutMs);
+    elevatorTalon.configMotionCruiseVelocity(13000, RobotMap.kTimeoutMs);
+    elevatorTalon.configMotionAcceleration(20000, RobotMap.kTimeoutMs);
     elevatorTalon.setSelectedSensorPosition(0, RobotMap.kPIDLoopIdx, RobotMap.kTimeoutMs);
   }
 

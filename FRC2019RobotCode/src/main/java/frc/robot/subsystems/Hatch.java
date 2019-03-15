@@ -11,6 +11,8 @@ public class Hatch extends Subsystem {
   private Solenoid hatchPop;
   private Solenoid hatchPush;
 
+  public boolean InteruptHatch = false;
+
   public Hatch(){
     compressor = new Compressor();
     compressor.start();
@@ -24,6 +26,14 @@ public class Hatch extends Subsystem {
 
   public Boolean getHatchPopSolenoidState(){
     return hatchPop.get();
+  }
+
+  public Boolean getInteruptHatch(){
+    return InteruptHatch;
+  }
+
+  public void SetInteruptHatch(boolean state){
+    InteruptHatch = state;
   }
 
   public void setHatchPop(boolean state) {
