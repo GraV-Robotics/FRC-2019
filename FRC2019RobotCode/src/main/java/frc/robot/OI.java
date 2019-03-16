@@ -8,6 +8,8 @@ import frc.robot.commands.DriveElevatorPositionTwo;
 import frc.robot.commands.HatchPop;
 import frc.robot.commands.HatchPush;
 import frc.robot.commands.HatchRetract;
+import frc.robot.commands.PlanCExtend;
+import frc.robot.commands.PlanCRetract;
 
 public class OI {
 
@@ -19,6 +21,8 @@ public class OI {
   public JoystickButton hatchPush = new JoystickButton(manipulatorController, 5);
   public JoystickButton hatchRetract = new JoystickButton(manipulatorController, 6);
   public JoystickButton hatchPop = new JoystickButton(manipulatorController, 9);
+  public JoystickButton planCExtend = new JoystickButton(driverController, 5);
+  public JoystickButton planCRetract = new JoystickButton(driverController, 6);
 
   public OI() {
     hatchPop.whileHeld(new HatchPop());
@@ -27,5 +31,7 @@ public class OI {
     elevatorPos2.whenPressed(new DriveElevatorPositionTwo());
     hatchPush.whenPressed(new HatchPush());
     hatchRetract.whenPressed(new HatchRetract());
+    planCExtend.whenPressed(new PlanCExtend());
+    planCRetract.whenPressed(new PlanCRetract());
   }
 }

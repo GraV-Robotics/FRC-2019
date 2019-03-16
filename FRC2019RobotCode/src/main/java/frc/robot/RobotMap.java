@@ -22,5 +22,6 @@ public class RobotMap {
  public static final int elevatorPos2 = 61000;
  public static final int hatchPush = 0;
  public static final int hatchPop = 1;
+ public static final int PlanC = 2;
  public static final String ELEVATOR_STATES[] = {"HOME", "POS1", "POS2"};
 }

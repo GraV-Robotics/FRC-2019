@@ -11,6 +11,7 @@ import frc.robot.commands.SmartDashboardOutput;
 import frc.robot.subsystems.DriveTrain;
 import frc.robot.subsystems.Elevator;
 import frc.robot.subsystems.Hatch;
+import frc.robot.subsystems.PlanC;
 
 
 public class Robot extends TimedRobot {
@@ -22,6 +23,7 @@ public class Robot extends TimedRobot {
  public static SmartDashboardOutput dashboardOutput;
   public static boolean manualElevatorControlState;
   public static DriveElevatorManual driveElevatorManual;
+  public static PlanC planC;
 
   @Override
   public void robotInit() {
@@ -38,6 +40,7 @@ public class Robot extends TimedRobot {
     hatchOutput();
     driveTrainOutput();
     matchData();
+    planC = new PlanC();
   }
 
   @Override
