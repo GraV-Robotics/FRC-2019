@@ -29,6 +29,7 @@ public class Robot extends TimedRobot {
   public void robotInit() {
     elevator = new Elevator();
     hatch = new Hatch();
+    planC = new PlanC();
     oi = new OI();
     driveTrain = new DriveTrain();
     driveElevatorManual = new DriveElevatorManual();
@@ -40,7 +41,6 @@ public class Robot extends TimedRobot {
     hatchOutput();
     driveTrainOutput();
     matchData();
-    planC = new PlanC();
   }
 
   @Override

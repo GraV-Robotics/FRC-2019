@@ -31,7 +31,7 @@ public class Elevator extends Subsystem {
     elevatorTalon.config_kI(RobotMap.kSlotIdx, RobotMap.kI, RobotMap.kTimeoutMs);
     elevatorTalon.config_kD(RobotMap.kSlotIdx, RobotMap.kD, RobotMap.kTimeoutMs);
     elevatorTalon.config_kF(RobotMap.kSlotIdx, RobotMap.kF, RobotMap.kTimeoutMs);
-    elevatorTalon.configMotionCruiseVelocity(26000, RobotMap.kTimeoutMs);
+    elevatorTalon.configMotionCruiseVelocity(13000, RobotMap.kTimeoutMs);
     elevatorTalon.configMotionAcceleration(20000, RobotMap.kTimeoutMs);
     elevatorTalon.setSelectedSensorPosition(0, RobotMap.kPIDLoopIdx, RobotMap.kTimeoutMs);
   }
