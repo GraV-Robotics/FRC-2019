@@ -31,8 +31,8 @@ public class Elevator extends Subsystem {
     elevatorTalon.config_kI(RobotMap.kSlotIdx, RobotMap.kI, RobotMap.kTimeoutMs);
     elevatorTalon.config_kD(RobotMap.kSlotIdx, RobotMap.kD, RobotMap.kTimeoutMs);
     elevatorTalon.config_kF(RobotMap.kSlotIdx, RobotMap.kF, RobotMap.kTimeoutMs);
-    elevatorTalon.configMotionCruiseVelocity(13000, RobotMap.kTimeoutMs);
-    elevatorTalon.configMotionAcceleration(20000, RobotMap.kTimeoutMs);
+    elevatorTalon.configMotionCruiseVelocity(20000, RobotMap.kTimeoutMs);
+    elevatorTalon.configMotionAcceleration(30000, RobotMap.kTimeoutMs);
     elevatorTalon.setSelectedSensorPosition(0, RobotMap.kPIDLoopIdx, RobotMap.kTimeoutMs);
   }
 
@@ -49,8 +49,8 @@ public class Elevator extends Subsystem {
     elevatorTalon.configPeakOutputReverse(-value, RobotMap.kTimeoutMs);
   }
 
-  public void setCurrentLimit(int limit) {
-    elevatorTalon.configContinuousCurrentLimit(limit);
+  public void setCurrentLimit(int limit, int timeMs) {
+    elevatorTalon.configContinuousCurrentLimit(limit, timeMs);
   }
 
   public double getCurrentDraw(){

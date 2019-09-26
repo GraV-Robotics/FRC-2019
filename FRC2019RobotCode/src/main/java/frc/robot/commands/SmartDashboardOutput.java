@@ -29,7 +29,6 @@ public class SmartDashboardOutput extends Command {
   }
 
   public void hatchOutput() {
-    SmartDashboard.putBoolean("Hatch Push", Robot.hatch.getHatchPushSolenoidState());
     SmartDashboard.putBoolean("Hatch Pop", Robot.hatch.getHatchPopSolenoidState());
   }
 

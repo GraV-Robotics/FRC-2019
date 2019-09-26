@@ -36,7 +36,7 @@ public class Robot extends TimedRobot {
     // dashboardOutput = new SmartDashboardOutput();
     UsbCamera camera1 = CameraServer.getInstance().startAutomaticCapture(0);
     camera1.setResolution(5, 1);
-    camera1.setFPS(15);
+    camera1.setFPS(24);
     elevatorOutput();
     hatchOutput();
     driveTrainOutput();
@@ -92,7 +92,6 @@ public class Robot extends TimedRobot {
   }
 
   public void hatchOutput() {
-    SmartDashboard.putBoolean("Hatch Push", Robot.hatch.getHatchPushSolenoidState());
     SmartDashboard.putBoolean("Hatch Pop", Robot.hatch.getHatchPopSolenoidState());
   }
 

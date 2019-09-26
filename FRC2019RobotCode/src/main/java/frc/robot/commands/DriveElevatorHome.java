@@ -14,7 +14,7 @@ public class DriveElevatorHome extends Command {
   protected void initialize() {
     Robot.elevator.setPreviousElevatorPosition(RobotMap.ELEVATOR_STATES[0]);
     Robot.elevator.setBrakeMode(true);
-    Robot.elevator.setCurrentLimit(10);
+    Robot.elevator.setCurrentLimit(20,20);
     Robot.elevator.setPeakOutput(1.0);
     Robot.elevator.enableCurrentLimit(true);
   }
@@ -22,10 +22,7 @@ public class DriveElevatorHome extends Command {
   @Override
   protected void execute() {
       Robot.elevator.driveToPosition(RobotMap.elevatorHomePos);
-      if (Robot.elevator.getEncoderValue() < 3000 || Robot.elevator.getEncoderValue() > -500) {
-      Robot.hatch.SetInteruptHatch(false);
       }
-  }
 
   @Override
   protected boolean isFinished() {
@@ -39,9 +36,5 @@ public class DriveElevatorHome extends Command {
 
   @Override
   protected void interrupted() {
-  }
-
-  public boolean isSafeToMove() {
-    return Robot.hatch.getHatchPushSolenoidState();
   }
 }

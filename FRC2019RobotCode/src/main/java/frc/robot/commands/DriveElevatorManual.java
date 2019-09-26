@@ -12,7 +12,7 @@ public class DriveElevatorManual extends Command {
   @Override
   protected void initialize() {
     Robot.elevator.setBrakeMode(true);
-    Robot.elevator.setCurrentLimit(25);
+    Robot.elevator.setCurrentLimit(25,20);
     Robot.elevator.enableCurrentLimit(true);
   }
 
