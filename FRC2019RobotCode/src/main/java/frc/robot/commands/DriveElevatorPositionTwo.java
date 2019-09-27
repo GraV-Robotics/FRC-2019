@@ -14,7 +14,7 @@ public class DriveElevatorPositionTwo extends Command {
   protected void initialize() {
     Robot.elevator.setPreviousElevatorPosition(RobotMap.ELEVATOR_STATES[2]);
     Robot.elevator.setBrakeMode(true);
-    Robot.elevator.setCurrentLimit(30,20);
+    Robot.elevator.setCurrentLimit(40,20);
     Robot.elevator.setPeakOutput(1.0);
     Robot.elevator.enableCurrentLimit(true);
   }
