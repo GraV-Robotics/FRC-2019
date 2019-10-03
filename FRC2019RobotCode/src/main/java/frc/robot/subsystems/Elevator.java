@@ -8,6 +8,7 @@ import com.ctre.phoenix.motorcontrol.can.TalonSRX;
 import edu.wpi.first.wpilibj.command.Subsystem;
 import frc.robot.RobotMap;
 import frc.robot.commands.DriveElevatorHome;
+import frc.robot.commands.DriveElevatorManual;
 
 public class Elevator extends Subsystem {
 
@@ -66,7 +67,7 @@ public class Elevator extends Subsystem {
   }
 
   public void driveElevator(double percent){
-    elevatorTalon.set(ControlMode.PercentOutput, percent);
+    elevatorTalon.set(ControlMode.PercentOutput, Math.abs(percent));
   }
 
   public double getEncoderValue(){
@@ -91,7 +92,8 @@ public class Elevator extends Subsystem {
 
   @Override
   public void initDefaultCommand() {
-    setDefaultCommand(new DriveElevatorHome());
+    // setDefaultCommand(new DriveElevatorHome());
+    setDefaultCommand(new DriveElevatorManual());
   }
 
 }

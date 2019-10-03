@@ -19,7 +19,7 @@ public class DriveElevatorManual extends Command {
   // Called repeatedly when this Command is scheduled to run
   @Override
   protected void execute() {
-    Robot.elevator.driveElevator(((-Robot.oi.manipulatorController.getRawAxis(2)) * 0.50) + ((Robot.oi.manipulatorController.getRawAxis(3)) * 0.50));
+    Robot.elevator.driveElevator(Robot.oi.manipulatorController.getRawAxis(1));
   }
 
   // Make this return true when this Command no longer needs to run execute()

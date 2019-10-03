@@ -32,7 +32,7 @@ public class Robot extends TimedRobot {
     planC = new PlanC();
     oi = new OI();
     driveTrain = new DriveTrain();
-    driveElevatorManual = new DriveElevatorManual();
+    // driveElevatorManual = new DriveElevatorManual();
     // dashboardOutput = new SmartDashboardOutput();
     UsbCamera camera1 = CameraServer.getInstance().startAutomaticCapture(0);
     camera1.setResolution(5, 1);
